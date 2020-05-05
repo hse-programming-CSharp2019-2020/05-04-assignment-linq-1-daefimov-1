@@ -75,6 +75,7 @@ namespace Task01
                 Console.WriteLine("ArgumentNullException");
                 return;
             }
+            //п
         }
 
         // Попробуйте осуществить вывод элементов коллекции с учетом разделителя, записав это ОДНИМ ВЫРАЖЕНИЕМ.
