@@ -75,13 +75,18 @@ namespace Task02
                 // вывести элементы коллекции в одну строку
                 filteredCollection.ToList().ForEach(x => Console.Write(@"{0} ", x));
             }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+                return;
+            }
+
             catch (Exception)
             {
                 Console.WriteLine("InvalidOperationException");
                 return;
-            }
-            
-            
+            }           
+
         }
         
     }
