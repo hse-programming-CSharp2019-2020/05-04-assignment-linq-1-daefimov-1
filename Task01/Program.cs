@@ -41,23 +41,39 @@ namespace Task01
 
         public static void RunTesk01()
         {
-            int[] arr;
+            int[] arr = null;
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = (Console.ReadLine().Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries).Select(u => int.Parse(u))).ToArray();
             }
-            
+            catch(FormatException)
+            {
+                Console.WriteLine("FormatException");
+                return;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+                return;
+            }
             // использовать синтаксис запросов!
-            IEnumerable<int> arrQuery = from 
+            IEnumerable<int> arrQuery = from i in arr
+                                        where ((i < 0) || (i % 2 == 0))
+                                        select i;
 
             // использовать синтаксис методов!
-            IEnumerable<int> arrMethod = arr.
+            IEnumerable<int> arrMethod = arr.Where(i => i < 0 || i % 2 == 0);
 
             try
             {
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 PrintEnumerableCollection<int>(arrMethod, "*");
+            }
+            catch(ArgumentNullException)
+            {
+                Console.WriteLine("ArgumentNullException");
+                return;
             }
         }
 
@@ -65,8 +81,12 @@ namespace Task01
         // P.S. Есть два способа, оставьте тот, в котором применяется LINQ...
         public static void PrintEnumerableCollection<T>(IEnumerable<T> collection, string separator)
         {
-           
-           
+            string text = "";
+            foreach (var item in collection)
+            {
+                text += separator + item;    
+            }             
+            Console.WriteLine(text.Substring(1));
         }
     }
 }
