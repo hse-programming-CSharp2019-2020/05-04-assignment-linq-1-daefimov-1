@@ -57,6 +57,7 @@ namespace Task01
                 Console.WriteLine("OverflowException");
                 return;
             }
+            
             // использовать синтаксис запросов!
             IEnumerable<int> arrQuery = from i in arr
                                         where ((i < 0) || (i % 2 == 0))
@@ -73,6 +74,11 @@ namespace Task01
             catch(ArgumentNullException)
             {
                 Console.WriteLine("ArgumentNullException");
+                return;
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
                 return;
             }
             //п
