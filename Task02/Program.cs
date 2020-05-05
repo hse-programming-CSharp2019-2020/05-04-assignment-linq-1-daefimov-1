@@ -74,6 +74,10 @@ namespace Task02
                 {
                     throw new OverflowException();
                 }
+                if (averageUsingInstanceForm > 15000000)
+                {
+                    throw new OverflowException();
+                }
 
                 Console.WriteLine($"{averageUsingStaticForm:F3}".Replace('.', ','));
                 Console.WriteLine($"{averageUsingInstanceForm:F3}".Replace('.', ','));
