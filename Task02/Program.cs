@@ -74,7 +74,7 @@ namespace Task02
                 {
                     throw new OverflowException();
                 }
-                if (averageUsingInstanceForm > 15000000)
+                if (averageUsingInstanceForm < -15000000)
                 {
                     throw new OverflowException();
                 }
