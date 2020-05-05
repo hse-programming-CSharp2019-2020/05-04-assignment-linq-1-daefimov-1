@@ -73,7 +73,7 @@ namespace Task01
             }
             catch(ArgumentNullException)
             {
-                Console.WriteLine("ArgumentNullException");
+                Console.WriteLine("InvalidOperationException");
                 return;
             }
             catch (InvalidOperationException)
@@ -88,15 +88,14 @@ namespace Task01
         // P.S. Есть два способа, оставьте тот, в котором применяется LINQ...
         public static void PrintEnumerableCollection<T>(IEnumerable<T> collection, string separator)
         {
+            if (collection.Count() == 0)
+                throw new InvalidOperationException();
             string text = "";
             foreach (var item in collection)
             {
                 text += separator + item;    
-            }    
-            if(text.Length != 0)
-                Console.WriteLine(text.Substring(1));
-            else
-                Console.WriteLine("");
+            }                
+            Console.WriteLine(text.Substring(1));            
         }
     }
 }
