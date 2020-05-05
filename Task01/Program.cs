@@ -92,8 +92,11 @@ namespace Task01
             foreach (var item in collection)
             {
                 text += separator + item;    
-            }             
-            Console.WriteLine(text.Substring(1));
+            }    
+            if(text.Length != 0)
+                Console.WriteLine(text.Substring(1));
+            else
+                Console.WriteLine("");
         }
     }
 }
