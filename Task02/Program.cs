@@ -60,7 +60,8 @@ namespace Task02
             
             try
             {
-
+                if (filteredCollection.Count() == 0)
+                    throw new InvalidOperationException();
                 // использовать статическую форму вызова метода подсчета среднего
                 double averageUsingStaticForm = (double)(from int a in filteredCollection
                                                  select a*a).Sum() / filteredCollection.Count();
