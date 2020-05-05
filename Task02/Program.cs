@@ -42,25 +42,45 @@ namespace Task02
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = (Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(u => int.Parse(u))).ToArray();
             }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+                return;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+                return;
+            }
+
+
+            var filteredCollection = arr.TakeWhile(n => n != 0);
             
-            
-            var filteredCollection = arr.
-           
             try
             {
-                
+
                 // использовать статическую форму вызова метода подсчета среднего
-                double averageUsingStaticForm = 
+                double averageUsingStaticForm = (double)(from int a in filteredCollection
+                                                 select a*a).Sum() / filteredCollection.Count();
+
+
                 // использовать объектную форму вызова метода подсчета среднего
-                double averageUsingInstanceForm = 
+                double averageUsingInstanceForm = (double)filteredCollection.Sum(n => n*n) / filteredCollection.Count();
 
-
+                Console.WriteLine($"{averageUsingStaticForm:F3}".Replace('.', ','));
+                Console.WriteLine($"{averageUsingInstanceForm:F3}".Replace('.', ','));
                 // вывести элементы коллекции в одну строку
-                filteredCollection.
+                filteredCollection.ToList().ForEach(x => Console.Write(@"{0} ", x));
             }
-          
+            catch (Exception)
+            {
+                Console.WriteLine("InvalidOperationException");
+                return;
+            }
+            
+            
         }
         
     }
