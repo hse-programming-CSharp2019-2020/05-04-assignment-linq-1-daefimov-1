@@ -54,28 +54,41 @@ namespace Task03
     {
         static void Main(string[] args)
         {
-            int N
+            int N;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
             {
-                N = 
+                N = int.Parse(Console.ReadLine());
                 
                 for (int i = 0; i < N; i++)
                 {
-                    
+                    string[] arr = Console.ReadLine().Split();
+                    computerInfoList.Add(new ComputerInfo(arr[0], int.Parse(arr[1]), (Manufacturer)(int.Parse(arr[2]))));
                 }
             }
-           
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+                return;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+                return;
+            }
+
 
             // выполните сортировку одним выражением
-            var computerInfoQuery = from 
+            var computerInfoQuery = from u in computerInfoList
+                                    orderby u.Owner descending, u.ComputerManufacturer.ToString(), u.Date descending
+                                    select u;
 
             PrintCollectionInOneLine(computerInfoQuery);
 
             Console.WriteLine();
 
             // выполните сортировку одним выражением
-            var computerInfoMethods = computerInfoList.
+            var computerInfoMethods = computerInfoList.OrderByDescending(u => u.Owner).ThenBy(u => u.ComputerManufacturer.ToString()).ThenByDescending(u => u.Date);
 
             PrintCollectionInOneLine(computerInfoMethods);
             
@@ -84,14 +97,34 @@ namespace Task03
         // выведите элементы коллекции на экран с помощью кода, состоящего из одной линии (должна быть одна точка с запятой)
         public static void PrintCollectionInOneLine(IEnumerable<ComputerInfo> collection)
         {
+            foreach (var item in collection)
+            {
+                Console.WriteLine(item.Owner + ": " + item.ComputerManufacturer + " [" + item.Date + "]");
+            }
         }
     }
 
 
     class ComputerInfo
     {
+        public ComputerInfo(string owner, int date, Manufacturer computerManufacturer)
+        {
+            Owner = owner;
+            ComputerManufacturer = computerManufacturer;
+            Date = date;
+        }
+
         public string Owner { get; set; }
         public Manufacturer ComputerManufacturer { get; set; }
+        public int Date { get; set; }
         
+        
+    }
+    enum Manufacturer
+    {
+        Dell,
+        Asus,
+        Apple,
+        Microsoft
     }
 }
