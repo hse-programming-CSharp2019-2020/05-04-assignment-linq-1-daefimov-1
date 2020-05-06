@@ -67,7 +67,7 @@ namespace Task03
                 {
                    
                     string[] arr = Console.ReadLine().Split();
-                    if (int.Parse(arr[2]) > 3 || int.Parse(arr[2]) < 0)
+                    if (int.Parse(arr[2]) > 3 || int.Parse(arr[2]) < 0 || int.Parse(arr[1]) < 1970 || int.Parse(arr[1]) > 2020)
                     {
                         throw new ArgumentException();
                     }
