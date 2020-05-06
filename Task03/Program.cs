@@ -62,9 +62,19 @@ namespace Task03
                 
                 for (int i = 0; i < N; i++)
                 {
+                   
                     string[] arr = Console.ReadLine().Split();
+                    if (int.Parse(arr[2]) > 3 || int.Parse(arr[2]) < 0)
+                    {
+                        throw new ArgumentException();
+                    }
                     computerInfoList.Add(new ComputerInfo(arr[0], int.Parse(arr[1]), (Manufacturer)(int.Parse(arr[2]))));
                 }
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+                return;
             }
             catch (FormatException)
             {
