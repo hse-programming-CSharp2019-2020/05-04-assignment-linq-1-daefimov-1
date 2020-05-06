@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 /*Все действия по обработке данных выполнять с использованием LINQ
  * 
@@ -54,6 +55,8 @@ namespace Task03
     {
         static void Main(string[] args)
         {
+            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;
             int N;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
